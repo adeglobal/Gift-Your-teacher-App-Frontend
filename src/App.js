@@ -21,7 +21,6 @@ import { ProtectTeacherRoute } from './routes/ProtectTeacherRoute';
 import { TeacherDetails } from './Contexts/ContextProvider'
 function App() {
   return (
-      <div></div>
     <div className="App">
 
 
