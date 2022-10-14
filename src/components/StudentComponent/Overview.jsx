@@ -5,8 +5,28 @@ import { BottomBoxSection, GreenTop, OverviewWrapper, TopBoxSection, Transaction
 import Payment from '../PaymentModal'
 
 const Overview = () => {
+  const[moneySent, setMoneySent ] = useState(0)
   const [toggleModal, setToggleModal ] = useState(false)
-  
+
+  async function getTotalMoneySent (){
+    await  axios.get("http://localhost:8080/api/v1/authUser/total-moneysent", {
+      headers:{Authorization: localStorage.getItem("token")}
+
+    }).then((responses)=>{
+      console.log(responses)
+      if(responses.status===200){
+        setMoneySent(responses.data.payload)
+      }else{
+        console.log(responses)
+      }
+
+      console.log(responses)
+
+    })
+  }
+  useEffect(()=>{
+    getTotalMoneySent()
+  },[])
   function handleClick(){
     setToggleModal(true)
   }
@@ -53,7 +73,8 @@ const Overview = () => {
         <TransactionDetails>
           <div>
             <h4>Total Money Sent</h4>
-            <h1>N24,500</h1>
+
+            <h1>N{moneySent}</h1>
             <p>Sent</p>
           </div>
           <span>
