@@ -54,7 +54,9 @@ const[toggleConfirm, setToggleConfirm] = useState(false)
     try {
         setLoading(true)
         // let res = await axios.post(`http://localhost:8080/api/v1/student/wallet-fund?amount=${amount}`, {
-            let res = await axios.post(`http://localhost:8080/api/v1/student/test?amount=${amount}`, paymentDetails)
+            let res = await axios.post(`http://localhost:8080/api/v1/student/test?amount=${amount}`, paymentDetails, {headers:{
+                Authorization:token
+              }})
             console.log(res)
             if(res.data.message ==='Authorization URL created'){
                 console.log('we got here')
@@ -80,7 +82,9 @@ const[toggleConfirm, setToggleConfirm] = useState(false)
         console.log(tokensplit)
         try {
             setLoading(true)
-            let res = await axios.post(`http://localhost:8080/api/v1/student/test/${ref}`)
+            let res = await axios.post(`http://localhost:8080/api/v1/student/test/${ref}`, {headers:{
+                Authorization:token
+              }})
             console.log(res)
             if(res.data.data.gateway_response === 'Successful'){
                 console.log('confirmed')

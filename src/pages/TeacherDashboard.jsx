@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom' 
+import { Link, NavLink, useNavigate } from 'react-router-dom' 
 import { LeftSideBar, SideBarLink } from '../styles/StudentStyles/SidebarStyles';
 // import { DashboardContainer, DashboardMainBody} from '../styles/TeacherStyles/TeacherDashBoardStyles';
 import { Topbar, ImageWrapper,TopbarLeftSide,TopbarRighttSide} from '../styles/NavbarStyles';
@@ -7,10 +7,13 @@ import { DashboardContainer, DashboardMainBody } from '../styles/StudentStyles/S
 //import "./style.css"
 import UserIcon from '../assets/Images/Ellipse 25.png'
 import Logo from '../assets/Images/Frame12.png'
+import LogOutComfirmation from '../components/LogOutComfirmation';
 
 
 
 const TeacherDashboard = ({children, teacherDetails}) => {
+  const [isLogout, setIsLogout] = useState(false)
+  const teacherId = localStorage.getItem("isTeacher")
   const [isOpen, setIsOpen] = useState(false);
   const handleBurger = () => setIsOpen(!isOpen);
   const handleCloseSideBar = () => setIsOpen(true);
@@ -18,8 +21,8 @@ const TeacherDashboard = ({children, teacherDetails}) => {
   // const [teacherDetails, setTeacherDetails] = useContext(ContextProvider)
 
   const handleLogout = ()=>{
-    localStorage.clear()
-    navigate('/login') 
+  setIsLogout(true)
+
   }
 
 
@@ -35,35 +38,33 @@ const TeacherDashboard = ({children, teacherDetails}) => {
             <h1>Reward your Teacher</h1>
             <span onClick={handleBurger}><i className='fa fa-bars'></i></span>
         </TopbarLeftSide>
-        <TopbarRighttSide>
-        <h3>Transaction History</h3>
+        <Link to={`/teacher/profile/${teacherId}`} style={{textDecoration:"none"}}>
+        <TopbarRighttSide> 
+
             <ImageWrapper>
                 <img src={UserIcon} alt="" /> 
-            </ImageWrapper>
+            </ ImageWrapper>
             <h3>{teacherDetails.name?.substring(0, 10)}</h3>
         </TopbarRighttSide>
+       </Link>
+
     </Topbar>
    
    <DashboardContainer>
       <LeftSideBar className={isOpen ? "closeSideBar" : "openSideBar"}>
         <ul>
           <SideBarLink activeclassname="active" onClick={handleCloseSideBar} to="/teacher" end>
-            <li>
-              <i className="fas fa-th-large"></i>
-              <p>Overview</p>
-            </li>
+          <i className="fas fa-th-large"></i>
+           
+            <li> Overview </li>
           </SideBarLink> 
           <SideBarLink activeclassname="active" onClick={handleCloseSideBar} to="/teacher/notification">
-            <li>
-              <i className="fa fa-bell"></i>
-              <p>Notifications</p>
-            </li>
+          <i className="fa fa-bell"></i>
+            <li> Notifications </li>
           </SideBarLink>
           <SideBarLink activeclassname="active" onClick={handleCloseSideBar} to="/teacher/messaging">
-            <li>
-              <i className="fa fa-comment-dots"></i>
-              <p>Messaging</p>
-            </li>
+          <i className="fa fa-comment-dots"></i>
+            <li> Messaging  </li>
           </SideBarLink>
 
         </ul>
@@ -75,6 +76,7 @@ const TeacherDashboard = ({children, teacherDetails}) => {
       <DashboardMainBody>
         {children}
       </DashboardMainBody>
+      {isLogout && <LogOutComfirmation setIsLogout={setIsLogout} />}
 
     </DashboardContainer>
     </>

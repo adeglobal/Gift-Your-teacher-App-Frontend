@@ -54,15 +54,29 @@ min-height: 100vh;
 
 export const SideBarLink = styled(NavLink)`
       text-decoration: none;
-      li{
-        justify-content: center;
+      justify-content: left;
         align-items: center;
+        display: flex;
+        margin-right:10% ;
+        padding: 0 5%;
+        cursor: pointer;
+
+        text-decoration: none;
+        color: black;
+
+        & i:hover{
+          color: #fff !important;
+        }
+      li{
+        
       }
        :hover{
          color: white;
          background-color: #55A630;
+        text-decoration: none;
+
      }
-       :active{
+      & .active{
          color: white;
          background-color: #55A630; 
     }

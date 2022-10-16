@@ -6,6 +6,7 @@ import Navbar from '../components/StudentNavbar'
 import TeacherDashboard from  '../pages/TeacherDashboard'
 import Overview from '../components/TeacherComponent/Overview' 
 import axios from 'axios';
+import TeacherProfile from '../components/TeacherComponent/TeacherProfile'
 
 const TeacherRoutes = () => {
   const [teacherDetails, setTeacherDetails] = useState({})
@@ -39,6 +40,7 @@ const TeacherRoutes = () => {
             <Route path="/" element={<Overview teacherDetails={teacherDetails}/>}/> 
             <Route path="/Notification" element={<Notification/>}/>
             <Route path="/Messaging" element={<Messaging/>}/>
+            <Route path="/profile/:id" element={<TeacherProfile teacherDetails={teacherDetails}/>} />
             <Route path="*" element={<div><h2>404 PAGE NOT FOUND</h2></div>}/>
     </Routes>
     </TeacherDashboard>

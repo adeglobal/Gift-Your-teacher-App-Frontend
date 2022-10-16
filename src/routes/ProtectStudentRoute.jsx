@@ -12,7 +12,7 @@ export const ProtectStudentRoute = ({children}) => {
         // return <Navigate to="/student" state={{from: location}} replace />
        return window.location.href="/student"
     }else{
-        return <Navigate to="/studentlogin" state={{from: location}} replace />
+        return <Navigate to="/login" state={{from: location}} replace />
     }
 
     // if(isLoggedIn && window.location.pathname == "/studentlogin"){

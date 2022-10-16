@@ -7,7 +7,7 @@ import School from '../components/StudentComponent/School'
 import Notification from '../components/StudentComponent/Notification'
 import Messaging from '../components/StudentComponent/Messaging'
 import Overview from '../components/StudentComponent/Overview'
-
+import StudentProfile from '../components/StudentComponent/StudentProfile'
 
 import Navbar from '../components/StudentNavbar'
 import SchoolInfo from '../components/StudentComponent/SchoolInfo'
@@ -27,6 +27,7 @@ const StudentRoutes = () => {
         }
       })
       setStudentDetails(userData.data.payload) 
+      console.log(studentDetails)
     } catch (error) {
       
     }
@@ -46,6 +47,7 @@ const StudentRoutes = () => {
             <Route path="/Notification" element={<Notification/>}/>
             <Route path="/Messaging" element={<Messaging/>}/> 
             <Route path="/schools/teachers" element={<SchoolInfo/>}/>
+            <Route path="/profile/:id" element={<StudentProfile/>} />
             <Route path="*" element={<div><h2>404 PAGE NOT FOUND</h2></div>}/>
         </Routes>
     </StudentDashboard>
