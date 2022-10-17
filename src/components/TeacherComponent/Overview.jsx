@@ -52,7 +52,6 @@ const [transactionState, setTransactionState] = useState({})
       </TopBoxSection>
       <BottomBoxSection>
         <TransactionDetails > 
-
               <table >
                       <tr>
                           <th>Most recent</th>

@@ -62,11 +62,6 @@ const TeacherDashboard = ({children, teacherDetails}) => {
           <i className="fa fa-bell"></i>
             <li> Notifications </li>
           </SideBarLink>
-          <SideBarLink activeclassname="active" onClick={handleCloseSideBar} to="/teacher/messaging">
-          <i className="fa fa-comment-dots"></i>
-            <li> Messaging  </li>
-          </SideBarLink>
-
         </ul>
         <button onClick={handleLogout}>
           <i className="fa fa-sign-out"></i>
